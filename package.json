@@ -20,6 +20,8 @@
         "@eonasdan/tempus-dominus": "^6.2.10",
         "@fortawesome/fontawesome-free": "^6.1.1",
         "@popperjs/core": "2.11.6",
+        "@shopify/draggable": "^1.0.0-beta.7",
+        "@yaireo/tagify": "^4.9.2",
         "acorn": "^8.0.4",
         "apexcharts": "^3.36.3",
         "autosize": "^5.0.1",
@@ -98,7 +100,7 @@
         "wnumb": "^1.2.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.25.2",
+        "@babel/core": "^7.27.4",
         "alpinejs": "^3.12.0",
         "autoprefixer": "^10.4.2",
         "axios": "^1.1.3",
