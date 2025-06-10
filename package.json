@@ -8,7 +8,11 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "start": "npm run dev",
-        "production": "mix --production"
+        "production": "mix --production",
+        "post-install-cmd": [
+        "chmod -R 775 storage",
+        "php artisan optimize:clear"
+    ],
     },
     "dependencies": {
         "@alpinejs/focus": "^3.12.0",
