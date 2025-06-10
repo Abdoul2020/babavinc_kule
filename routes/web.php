@@ -64,24 +64,6 @@ Route::get("/kuyumculuk_hizmeti", [kuyumcupage::class, 'index'])->name('home.kuy
 Route::get("/iletisim_bilgileri", [contactpage::class, 'index'])->name('home.contactpage');
 
 
-Route::get('/port', function() {
-    return response()->json([
-        'server_port' => $_SERVER['SERVER_PORT'] ?? 'N/A',
-        'env_port' => env('PORT'),
-        'php_version' => PHP_VERSION
-    ]);
-});
-
-
-
-
-
-
-
-
-
-
-
 
 
 
