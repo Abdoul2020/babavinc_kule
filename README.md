@@ -1,10 +1,8 @@
 
-![Logo](https://grafstudios.com.tr/assets/img/graf_logo.svg)
 
 
-# Black Out website project
+# Baba vinc website project
 
-Korku evleri temalı web sayfası ve Yönetim Paneli
 
 
 ## Kullanılan Teknolojiler
@@ -17,7 +15,4 @@ Korku evleri temalı web sayfası ve Yönetim Paneli
 
 
 ## Yazarlar ve Teşekkür
-
-- [@anilgundal](https://www.github.com/anilgundal) tasarım ve geliştirme için.
-
   
