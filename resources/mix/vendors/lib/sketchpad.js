@@ -1,3 +1,5 @@
+
+if (typeof window !== 'undefined') {
 class Sketchpad {
   constructor(options) {
     // Support both old api (element) and new (canvas)
@@ -302,3 +304,5 @@ class Sketchpad {
 
 window.Sketchpad = Sketchpad;
 module.exports = Sketchpad;
+
+}

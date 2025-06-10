@@ -20,6 +20,8 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //    THE SOFTWARE.
 
+if (typeof window !== 'undefined') {
+
 function Sketchpad(config) {
   // Enforces the context for all functions
   for (var key in this.constructor.prototype) {
@@ -305,3 +307,9 @@ Sketchpad.prototype.redo = function() {
     this.drawStroke(stroke);
   }
 };
+
+// Finally, expose it globally
+window.Sketchpad = Sketchpad;
+
+// --- end original sketchpad.js content ---
+}
