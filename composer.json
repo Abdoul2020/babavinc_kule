@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.0.2",
         "ext-curl": "*",
         "ext-intl": "*",
         "fabpot/goutte": "^4.0",
@@ -16,7 +16,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.12",
-        "openspout/openspout": "^4.11", 
+        "openspout/openspout": "^4.13",
         "power-components/livewire-powergrid": "^4.1",
         "spatie/laravel-permission": "^5.9",
         "wire-elements/modal": "^1.0"
@@ -32,8 +32,7 @@
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0",
-        "symfony/string": "^6.4", 
-  "symfony/event-dispatcher": "^6.4"
+        "symfony/panther": "^2.1"
     },
     "autoload": {
         "psr-4": {
