@@ -35,18 +35,18 @@ use App\Http\Controllers\Site\abdudhabi\contactController as AbdudhabiContactCon
 use App\Http\Controllers\Site\dubai\reservationController as DubaiReservationController;
 use App\Http\Controllers\Site\dubai\teambuildingController as DubaiTeambuildingController;
 use App\Http\Controllers\Site\abdudhabi\reservationController as AbdudhabiReservationController;
-use App\Http\Controllers\site\aboutpage;
-use App\Http\Controllers\site\contactpage;
+use App\Http\Controllers\Site\aboutpage;
+use App\Http\Controllers\Site\contactpage;
 use App\Http\Controllers\Site\dubai\requestfranchiseController as DubaiRequestfranchiseController;
-use App\Http\Controllers\site\insaatpage;
-use App\Http\Controllers\site\kiralamapage;
-use App\Http\Controllers\site\kuyumcupage;
-use App\Http\Controllers\site\kvkkpage;
-use App\Http\Controllers\site\productspage;
-use App\Http\Controllers\site\satispage;
+use App\Http\Controllers\Site\insaatpage;
+use App\Http\Controllers\Site\kiralamapage;
+use App\Http\Controllers\Site\kuyumcupage;
+use App\Http\Controllers\Site\kvkkpage;
+use App\Http\Controllers\Site\productspage;
+use App\Http\Controllers\Site\satispage;
 use App\Http\Controllers\Site\supernatural\HomeController as SupernaturalHomeController;
-use App\Http\Controllers\site\teknikpage;
-use App\Http\Controllers\site\visionmissionpage;
+use App\Http\Controllers\Site\teknikpage;
+use App\Http\Controllers\Site\visionmissionpage;
 
 Route::get("/", [HomeController::class, 'index'])->name('home.index');
 
