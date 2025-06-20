@@ -106,9 +106,9 @@
                                     <tr class="fw-semibold fs-6 text-gray-800">
                                         <th data-priority="1" class="min-w-150px"> Ürün Sırası</th>
                                         <th data-priority="2" class="min-w-300px"> Kişi AD soyad</th>
-                                        <th class="min-w-150px">Urün</th>
+                                        <th class="min-w-150px">Urün Makine bu</th>
                                         <th class="min-w-100px">Yer(Ülke)</th>
-                                        <th class="min-w-150px">Kiralandığı Tarih</th>
+                                        <th class="min-w-150px">İade Tarihi</th>
                                         <!-- <th class="min-w-150px">Kiralandığı Saati</th> -->
                                         <th class="min-w-200px">İşlemler</th>
                                         <th class="min-w-300px">E-Posta :</th>
@@ -231,6 +231,8 @@
     <script src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/turkish-string.js"></script>
 
     <script>
+
+        
         const turkishLang = {
             language: {
 

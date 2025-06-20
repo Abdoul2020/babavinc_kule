@@ -13,8 +13,8 @@
 
                 <p class="mb-2">
                     <i class="fa fa-phone-alt me-3"></i>
-                    <a href="tel:+902423314366" style="color:#596277">
-                        +90 (242) 331 43 66
+                    <a href="tel:+905302005220" style="color:#596277">
+                    +90 530 200 52 20
                     </a>
                 </p>
 
@@ -26,30 +26,32 @@
                 </p>
 
                 <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/baba.vinc/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/watch?v=Gwsn3nIDJjM&t=8s" target="_blank"><i class="fab fa-youtube"></i></a>
+
+                    
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class=" mb-4">Kurumsl</h4>
                 <a class="btn btn-link" href="{{ route('home.about') }}">Hakkımızda</a>
                 <a class="btn btn-link" href="{{ route('home.visionandmission') }}"> Vizyon & Misyon</a>
-                <a class="btn btn-link" href="{{ route('home.kvkk') }}"> kvkk</a>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <h4 class=" mb-4">Site Haritası</h4>
                 <a class="btn btn-link" href="/"> AnaSayfa</a>
-                <a class="btn btn-link" href="{{ route('home.kvkk') }}"> Kurumsal</a>
+                <a class="btn btn-link" href="{{ route('home.about') }}"> Kurumsal</a>
+                <a class="btn btn-link" href="{{ route('home.products') }}"> Mobil Vinçler</a>
                 <a class="btn btn-link" href="{{ route('home.products') }}"> Kule Vinçler</a>
+                <a class="btn btn-link" href="{{ route('home.products') }}"> Makine Parkur</a>
                 <a class="btn btn-link" href="{{ route('home.satis') }}"> Hizmetler</a>
                 <a class="btn btn-link" href="{{ route('home.contactpage') }}"> İletişim</a>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <h4 class=" mb-4">Hizmetler</h4>
+                <a class="btn btn-link" href="{{ route('home.mobilkiralama') }}"> Mobil Vinç Kiralama</a>
                 <a class="btn btn-link" href="{{ route('home.kiralama') }}"> Kule Vinç Kiralama</a>
                 <a class="btn btn-link" href="{{ route('home.satis') }}"> Kule Vinç Satış </a>
                 <a class="btn btn-link" href="{{ route('home.teknik') }}">Teknik Servis</a>

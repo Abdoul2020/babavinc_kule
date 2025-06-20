@@ -36,7 +36,7 @@
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url( {{ asset('assets/site/img/inside_page.jpg') }});">
     <div class="container-fluid page-header-inner py-5">
         <div class="container text-center">
-            <h1 class="display-3 text-white mb-3 animated slideInDown"> Kiralama</h1>
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Mobil Vinç Kiralama</h1>
         </div>
     </div>
 </div>
@@ -57,7 +57,7 @@
         <div class="row g-5 mt-3">
             <div class="col-lg-12 mt-5">
 
-                <h1 class="mb-4"><span class="text-primary"></span> Kiralama Hizmeti</h1>
+                <h1 class="mb-4"><span class="text-primary"></span>Mobil Vinç Kiralama Hizmeti</h1>
                 <p class="mb-4">
                     Firmamız 1980 yılında Antalya da BABA KURTARMA olarak faaliyete girmiştir. 1980 yılında kara düzen dediğimiz vinçlerle temelini attığımız işletmeyi geliştirerek sektör haline getirip Türkiye'nin tüm illerine ulaşmayı başardık. Müşteri hizmetlerinde daha yakın ilgilenelim diye İstanbul Hadımköy de şubemiz bulunmaktadır. 2001 yılından itibaren ağımızı genişleterek Rusya/Almanya/Türkmenistan/Özbekistan şubelerimizi açmış bulunmaktayız.
 
@@ -71,9 +71,7 @@
                 <p class="mb-4">
                     Biz tüm şubelerimizde ağır nakliye ve vinç işletmeciliği yapıyoruz ve Dünya'nın her yerinde Türkiye'de verdiğimiz hizmetin aynısını vermekteyiz. Şirketimiz mobil vinç, kule vinç, hi-up vinç ağır nakliye ve forklift hizmetlerinde uzman ve deneyimli bir şirkettir. Şirketimiz inşaat sektörü, liman hizmetleri, baraj, çimento fabrikaları gibi birçok sektörde hizmet vermektedir. Şirketimiz 300 araç parkı ve 200 personeli ile 7/24 hizmet vermektedir.
                 </p>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -93,7 +91,8 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-primary d-flex flex-column justify-content-center text-center h-100 p-4">
-                    <h3 class="text-white mb-4"><i class="fa fa-phone-alt me-3"></i>+90 530 200 52 20
+                    <h3 class="text-white mb-4"><i class="fa fa-phone-alt me-3"></i>
+                    +90 530 200 52 20
                     </h3>
                     <a href="{{ route('home.contactpage') }}" class="btn btn-secondary py-3 px-5"> BİZİ Ara<i class="fa fa-arrow-right ms-3"></i></a>
                 </div>

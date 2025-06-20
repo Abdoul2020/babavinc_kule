@@ -22,8 +22,8 @@
 /* custom css here */
 
 .icon-container {
-    width: 24px;
-    height: 24px;
+    /* width: 24px; */
+    height: 270px;
     fill: currentColor;
   }
 
@@ -322,6 +322,11 @@
     flex-direction: column;
     margin-bottom: 45px;
 }
+
+.service-item:hover h3 {
+    color: #ffffff;
+  }
+  
 
 .service .service-item i {
     color: #202C45;

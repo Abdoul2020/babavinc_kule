@@ -66,7 +66,7 @@
             <!--begin:::Tab item-->
             <li class="nav-item">
                 <a class="nav-link text-active-primary pb-4 active" id="reservations-tab" data-bs-toggle="tab"
-                    href="#published_contents">Kiralanan Ürün Takibi</a>
+                    href="#published_contents">Yakında Dönecek Makineler</a>
             </li>
             <!--end:::Tab item-->
             @hasanyrole('root|admin')
@@ -113,24 +113,22 @@
                                 <thead>
                                     <tr class="fw-semibold fs-6 text-gray-800">
                                         @if ($isToday)
-                                        <th data-priority="1" class="min-w-150px">Ürün Sırası</th>
-                                        <th data-priority="2" class="min-w-300px"> Kişi Ad Soyad</th>
-                                        <th class="min-w-150px">Ürün</th>
-                                        <th class="min-w-100px">Yer(Ülke)</th>
-                                        <th class="min-w-150px"> Kiralandığı Tarihi</th>
-                                        <!-- <th class="min-w-150px"> Kiralandığı Saati</th> -->
+                                        <th data-priority="1" class="min-w-150px"> Ürün Sırası </th>
+                                        <th data-priority="2" class="min-w-300px"> Kişi AD soyad </th>
+                                        <th class="min-w-150px">Ürün </th>
+                                        <th class="min-w-100px">Yer (Ülke)</th>
+                                        <th class="min-w-150px">İade Tarihi</th>
                                         <th class="min-w-200px">İşlemler</th>
                                         <th class="min-w-300px">E-Posta</th>
-                                        <th>Telefon</th>
-                                        <!-- <th>Players</th> -->
-                                        <th>Toplam Ücret :</th>
-                                        <th> Oluşturma Tarihi </th>
+                                        <th>Telefon : </th>
+                                        <th> Ödeme Durumu</th>
+                                        <th>Oluşturma Tarihi : </th>
                                         @else
-                                        <th>Tarih</th>
+                                        <th>Date</th>
                                         @foreach ($roomTitles as $title)
-                                        <th>{{ $title }} (Toplam Sayı)</th>
+                                        <th>{{ $title }}</th>
                                         @endforeach
-                                        <th>Devam(Kira Detayı)</th>
+                                        <th>Processes</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -159,7 +157,6 @@
                                             {{ $reservation->place_id == 1 ? 'Dubai' : ($reservation->place_id == 2 ? 'Abu Dhabi' : 'N/A') }}
                                         </td>
                                         <td>{{ $reservationDate }}</td>
-                                        <td>{{ $startTime }} - {{ $endTime }}</td>
                                         <td>
                                             <a href="{{ route('admin.reservations.edit', ['reservation' => $reservation->id]) }}"
                                                 class="btn btn-small btn-primary"
@@ -180,7 +177,6 @@
                                         </td>
                                         <td>{{ $reservation->clientInfo->email ?? 'N/A' }}</td>
                                         <td>{{ $reservation->clientInfo->phone ?? 'N/A' }}</td>
-                                        <td>{{ $reservation->players }}</td>
                                         <td>
                                             @if ($reservation->paymentInfo && $reservation->paymentInfo->amount !== null)
                                             AED {{ $reservation->paymentInfo->amount / 100 }}
@@ -211,9 +207,9 @@
                                         $formattedDate = str_replace('/', '-', $date);
                                         $currentPath = request()->path();
                                         $isDubaiOrAbuDhabi =
-                                        Str::contains($currentPath, 'tum_urunler') ||
+                                        Str::contains($currentPath, 'dubai') ||
                                         Str::contains($currentPath, 'abudhabi');
-                                        $basePath = Str::contains($currentPath, 'tum_urunler')
+                                        $basePath = Str::contains($currentPath, 'dubai')
                                         ? 'dubai'
                                         : 'abudhabi';
                                         @endphp
@@ -256,8 +252,10 @@
     @include('pages.reservation._modals')
 
     @section('scripts')
+
+
     <script>
-        const turkishLang = {
+        $("#reservation_yearly").DataTable({
             language: {
 
                 lengthMenu: "Sayfada _MENU_ kayıt göster",
@@ -282,13 +280,7 @@
                 type: 'turkish',
                 targets: '_all'
             }]
-        };
-
-        $("#reservation_yearly").DataTable(turkishLang);
-        $("#reservation_monthly").DataTable(turkishLang);
-        $("#reservation_daily").DataTable(turkishLang);
-
-
+        });
 
 
 
@@ -384,7 +376,7 @@
                 return;
             }
 
-            var url = `/admin/kiralama/tum_urunler/${date}/list`;
+            var url = `/admin/reservations/${basePath}/${date}/list`;
             window.location.href = url;
         }
     </script>

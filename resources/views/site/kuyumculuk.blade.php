@@ -97,7 +97,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-primary d-flex flex-column justify-content-center text-center h-100 p-4">
-                    <h3 class="text-white mb-4"><i class="fa fa-phone-alt me-3"></i>+90 (242) 331 43 66
+                    <h3 class="text-white mb-4"><i class="fa fa-phone-alt me-3"></i>+90 530 200 52 20
                     </h3>
                     <a href="contact.html" class="btn btn-secondary py-3 px-5"> BİZİ Ara<i class="fa fa-arrow-right ms-3"></i></a>
                 </div>

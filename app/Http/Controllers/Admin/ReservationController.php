@@ -79,13 +79,15 @@ class ReservationController extends Controller
         }
 
         // Filter for today's reservations if 'today' is in the path
-        if ($isToday) {
-            $today = now()->startOfDay();
-            $reservations = $reservations->filter(function ($reservation) use ($today) {
-                $reservationDate = $reservation->reservation_date->startOfDay();
-                return $reservationDate->equalTo($today);
-            });
-        }
+        // if ($isToday) {
+        //     $today = now()->startOfDay();
+        //     $reservations = $reservations->filter(function ($reservation) use ($today) {
+        //         $reservationDate = $reservation->reservation_date->startOfDay();
+        //         return $reservationDate->equalTo($today);
+        //     });
+        // }
+
+        $reservations = Reservation::all();
 
 
         $hours = Hour::get();
@@ -238,11 +240,12 @@ class ReservationController extends Controller
     }
 
     // daily reservation
-    public function dailylist(Request $request, $id)
+    public function dailylist(Request $request)
     {
 
         // Determine the base path from the current request
         $basePath = Str::contains($request->path(), 'tum_urunler') ? 'dubai' : (Str::contains($request->path(), 'abudhabi') ? 'abudhabi' : null);
+
 
         // Determine place_id based on basePath
         // $placeId = $basePath === 'dubai' ? 1 : ($basePath === 'abudhabi' ? 2 : null);
@@ -253,17 +256,18 @@ class ReservationController extends Controller
         // }
 
         // Ensure the date is in the correct format (YYYY-MM-DD)
-        try {
-            $date = Carbon::createFromFormat('d-m-Y', $id);
-        } catch (\Exception $e) {
-            // Handle invalid date format
-            abort(400, 'Invalid date format. Expected format: YYYY-MM-DD');
-        }
+        // try {
+        //     $date = Carbon::createFromFormat('d-m-Y', $id);
+        // } catch (\Exception $e) {
+        //     abort(400, 'Invalid date format. Expected format: YYYY-MM-DD');
+        // }
 
         // Fetch reservations for the given date and place_id
-        $reservations = Reservation::whereDate('reservation_date', '=', $date)
-            // ->where('place_id', $placeId)
-            ->get();
+        // $reservations = Reservation::whereDate('reservation_date', '=', $date)
+        //     ->get();
+
+            $reservations = Reservation::all();
+
 
         // $archives = Reservation::onlyTrashed()->orderBy('id', 'desc')->paginate(10); // Bu doğru
 
@@ -303,7 +307,6 @@ class ReservationController extends Controller
             // "archives" => $archives,
             "rooms" => $rooms,
             "places" => $places,
-            "hours" => $hours,
             "clientInfos" => $clientInfo,
             "paymentInfos" => $paymentInfoDetails
         ]);

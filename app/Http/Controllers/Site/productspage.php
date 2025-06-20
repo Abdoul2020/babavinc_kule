@@ -14,12 +14,10 @@ class productspage extends Controller
      */
     public function index()
     {
-        $products = Room::all();
+        // $products = Room::all();
 
 
-        return view('site.products.index', [
-            'products' => $products,
-        ]);
+        return view('site.kulevincler');
     }
 
     /**

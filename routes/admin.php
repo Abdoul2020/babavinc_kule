@@ -76,11 +76,11 @@ Route::controller(ReservationController::class)->name('reservations.')->group(ca
     Route::get('kiralama/tum_urunler', 'dubai')->name('dubai');
     // Route::get('reservations/dubai/list', 'index')->name('dubai-list');
     Route::get('kiralama/tum_urunler/{id}/list', 'monthlylist')->name('monthlylist');
-    Route::get('kiralama/tum_urunler/details/{id}/list', 'dailylist')->name('dailylist');
+    Route::get('kiralama/tum_urunler/details', 'dailylist')->name('dailylist');
     Route::get('reservations/abudhabi', 'abudhabi')->name('abudhabi');
     // Route::get('reservations/abudhabi/list', 'index')->name('abudhabi-list');
     Route::get('reservations/abudhabi/{id}/list', 'monthlylist')->name('monthlylist');
-    Route::get('reservations/abudhabi/details/{id}/list', 'dailylist')->name('dailylist');
+    // Route::get('reservations/abudhabi/details/{id}/list', 'dailylist')->name('dailylist');
     Route::post('reservations', 'store')->name('store'); //->middleware(['permission:create reservation']);
     Route::patch('reservations/{item}/restore', 'restore')->name('restore'); //->middleware(['permission:create reservation']);
     Route::get('reservations/create', 'create')->name('create'); //->middleware(['permission:create reservation']);

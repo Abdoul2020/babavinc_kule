@@ -18,17 +18,16 @@
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>
-                    <a href="tel:+902423314366" style="color:#596277">
-                        +90 (242) 331 43 66
+                    <a href="tel:+905302005220" style="color:#596277">
+                    +90 530 200 52 20
                     </a>
-                        <!-- +90 (242) 331 43 66 -->
                     </small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square  text-primary me-0" href="https://www.instagram.com/baba.vinc/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square  text-primary me-0" href="https://www.youtube.com/watch?v=Gwsn3nIDJjM&t=8s" target="_blank"><i class="fab fa-youtube"></i></a>
+
+                    
                 </div>
             </div>
         </div>
@@ -38,9 +37,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary">
-                <img src=" {{ asset('assets/site/img/vinc.png') }}" alt="Tower Crane Icon" class="me-3 icon-container" />
-
-                BabaVinç</h2>
+                <img src=" {{ asset('assets/site/img/trans_vinc_logo.png') }}" alt="Tower Crane Icon" class="me-3 icon-container" /></h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -50,26 +47,28 @@
                 <a href="/" class="nav-item nav-link active">Ana Sayfa</a>
 
                 <div class="nav-item dropdown">
-                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Kurumsal</a>
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Vinçler</a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href="{{ route('home.about') }}" class="dropdown-item">Hakkımızda</a>
-                        <a href="{{ route('home.visionandmission') }}" class="dropdown-item">Vizyon & Misyon</a>
-                        <a href=" {{ route('home.kvkk') }}" class="dropdown-item">KVKK</a>
+                        <a href="{{ route('home.mobilvincpage') }}" class="dropdown-item">Mobil vinçler</a>
+                        <a href="{{ route('home.products') }}" class="dropdown-item"> Kule Vinçler</a>
                     </div>
                 </div>
 
+
                 <div class="nav-item dropdown">
-                    <!-- data-bs-toggle="dropdown" -->
-                    <!-- <a href="{{ route('home.products') }}" class="nav-link dropdown-toggle" >Kule Vİnçler</a> -->
-                <a href="{{ route('home.products') }}" class="nav-item nav-link">Kule Vİnçler</a>
-
-                   
-
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Makine Parkur</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="{{ route('home.makineparkudetails', 'turkiye') }}" class="dropdown-item"> Türkiye</a>
+                        <a href="{{ route('home.makineparkudetails', 'turkmenistan') }}" class="dropdown-item"> Turkmenistan</a>
+                        <a href="{{ route('home.makineparkudetails', 'germany') }}" class="dropdown-item"> Almanya</a>
+                        <a href="{{ route('home.makineparkudetails', 'russia') }}" class="dropdown-item">Rusya</a>
+                    </div>
                 </div>
 
                 <div class="nav-item dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hİzmetler</a>
                     <div class="dropdown-menu fade-up m-0">
+                    <a href="{{ route('home.mobilkiralama') }}" class="dropdown-item">Mobil Vinç Kiralama</a>
                         <a href="{{ route('home.kiralama') }}" class="dropdown-item">Kule Vinç Kiralama</a>
                         <a href="{{ route('home.satis') }}" class="dropdown-item"> Kule Vinç Satış</a>
                         <a href="{{ route('home.teknik') }}" class="dropdown-item">Teknik Servis</a>
@@ -78,7 +77,14 @@
                     </div>
                 </div>
 
-
+                <div class="nav-item dropdown">
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Kurumsal</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="{{ route('home.about') }}" class="dropdown-item">Hakkımızda</a>
+                        <a href="{{ route('home.visionandmission') }}" class="dropdown-item">Vizyon & Misyon</a>
+                        <!-- <a href=" {{ route('home.kvkk') }}" class="dropdown-item">KVKK</a> -->
+                    </div>
+                </div>
 
                 <a href="{{ route('home.contactpage') }}" class="nav-item nav-link">İlETİŞİM</a>
             </div>

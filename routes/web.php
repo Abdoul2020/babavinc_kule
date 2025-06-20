@@ -42,6 +42,9 @@ use App\Http\Controllers\Site\insaatpage;
 use App\Http\Controllers\Site\kiralamapage;
 use App\Http\Controllers\Site\kuyumcupage;
 use App\Http\Controllers\Site\kvkkpage;
+use App\Http\Controllers\Site\makineparkur;
+use App\Http\Controllers\Site\mobilkiralama;
+use App\Http\Controllers\Site\mobilvincpage;
 use App\Http\Controllers\Site\productspage;
 use App\Http\Controllers\Site\satispage;
 use App\Http\Controllers\Site\supernatural\HomeController as SupernaturalHomeController;
@@ -63,6 +66,12 @@ Route::get("/insaat_hizmeti", [insaatpage::class, 'index'])->name('home.insaat')
 Route::get("/kuyumculuk_hizmeti", [kuyumcupage::class, 'index'])->name('home.kuyumcu');
 Route::get("/iletisim_bilgileri", [contactpage::class, 'index'])->name('home.contactpage');
 
+Route::get("/mobil_vincler", [mobilvincpage::class, 'index'])->name('home.mobilvincpage');
+
+// makine parkur details
+Route::get("/babavinc/makine_parkuru/{slug}", [makineparkur::class, 'makineparkurDetails'])->name('home.makineparkudetails');
+
+Route::get("/mobil_vinc_kiralama", [mobilkiralama::class, 'index'])->name('home.mobilkiralama');
 
 
 

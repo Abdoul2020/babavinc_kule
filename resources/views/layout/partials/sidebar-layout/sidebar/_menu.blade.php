@@ -69,19 +69,19 @@
                     <!--begin:Menu sub-->
                     <div class="menu-submenu" style="padding-left: 30px">
 
-<!--                     
+                 
                         <div class="menu-item">
                             <a class="menu-link" href="{{ route('admin.reservations.today-list') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Takip</span>
+                                <span class="menu-title"> Yakında Dönecekler </span>
                             </a>
-                        </div> -->
+                        </div> 
 
 
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('admin.reservations.dubai') }}">
+                            <a class="menu-link" href="{{ route('admin.reservations.dailylist') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

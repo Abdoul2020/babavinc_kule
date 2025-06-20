@@ -43,6 +43,24 @@
 
     @include('site.layouts.css')
     @yield('styles')
+
+    <style>
+        .whatsapp-float {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+}
+
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+    </style>
     
 </head>
 
@@ -51,11 +69,26 @@
 
     <!-- Spinner Start -->
   <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only"> BabaVinç...</span>
+        <div class=" text-primary" style="width: 9rem; height: 9rem; background-image: url('{{ asset('assets/site/img/trans_vinc_logo.png') }}');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;" role="status">
+
+        <!-- <img src="{{ asset('assets/site/img/trans_vinc_logo.png') }}" alt="BabaVinç Loading..." style="height: 75px;" /> -->
+            <!-- <span class="sr-only"> BabaVinç...</span> -->
+
         </div>
     </div>
     <!-- Spinner End -->
+
+    <!-- whatsapp icon here -->
+    <a href="https://wa.me/905336495585?text=Merhaba%2C%20teklif%20almak%20istiyorum" 
+   class="whatsapp-float" target="_blank" rel="noopener">
+  <img src="  {{ asset('assets/site/img/whatsapp.png') }}" alt="WhatsApp Hesabı" />
+</a>
+
+
+    <!-- end of whatsapp -->
 
          @include('site.layouts.header')
         @yield('content')
@@ -64,7 +97,6 @@
 
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-    
     @include('site.layouts.js')
     @yield('scripts')
 
