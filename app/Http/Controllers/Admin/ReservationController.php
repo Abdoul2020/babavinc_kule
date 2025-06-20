@@ -87,7 +87,21 @@ class ReservationController extends Controller
         //     });
         // }
 
-        $reservations = Reservation::all();
+        // $reservations = Reservation::all();
+
+        if ($isToday) {
+            // Today at 00:00 ‑ use this as our lower boundary
+            $today = now()->startOfDay();
+        
+            $reservations = $reservations->filter(function ($reservation) use ($today) {
+                // Normalise each reservation’s date to its own start‑of‑day
+                $reservationDate = $reservation->reservation_date->startOfDay();
+                // Keep only today or any date after today
+                return $reservationDate->gte($today); 
+            });
+        }
+
+
 
 
         $hours = Hour::get();

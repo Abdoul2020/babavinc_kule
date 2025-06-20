@@ -81,7 +81,7 @@
                                                 placeholder="Enter first name" required />
                                         @endif
 
-                                        <label class="required " for="first_name">First Name</label>
+                                        <label class="required " for="first_name"> Adı (İsim) </label>
                                     </div>
                                 </div>
                                 <!--end::Col-->
@@ -99,7 +99,7 @@
                                                 placeholder="Enter last name" required />
                                         @endif
 
-                                        <label class="required " for="last_name">Last Name</label>
+                                        <label class="required " for="last_name"> Soyad </label>
                                     </div>
                                 </div>
                                 <!--end::Col-->
@@ -116,7 +116,7 @@
                                                 placeholder="Enter email" required />
                                         @endif
 
-                                        <label class="required " for="email">Email</label>
+                                        <label class="required " for="email">E-Posta</label>
                                     </div>
                                 </div>
                                 <!--end::Col-->
@@ -135,7 +135,7 @@
                                         @endif
 
 
-                                        <label class="required " for="phone">Phone</label>
+                                        <label class="required " for="phone">Telefon</label>
                                     </div>
                                 </div>
                                 <!--end::Col-->
@@ -160,7 +160,7 @@
                                                             @selected($place->id == $reservation->place_id)>{{ $place->title }}</option>
                                                     @endforeach
                                                 </select>
-                                                <label class="required " for="place_id">Place</label>
+                                                <label class="required " for="place_id">Yer (Ülke)</label>
                                             </div>
                                         </div>
                                         <!--begin::Col-->
@@ -179,7 +179,7 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    <label class="required " for="room_id">Room</label>
+                                                    <label class="required " for="room_id">Ürün</label>
                                                 </div>
                                             </div>
                                             <!--end::Input group-->
@@ -198,14 +198,14 @@
                                                 <input value="{{ $reservation->reservation_date }}"
                                                     name="reservation_date" class="form-control form-control-solid"
                                                     placeholder="Pick a date" id="reservation_date" />
-                                                <label class="required " for="reservation_date">Reservation
-                                                    Date</label>
+                                                <label class="required " for="reservation_date"> İade Tarihi</label>
                                             </div>
                                             <!--end::Input group-->
                                         </div>
                                         <!--begin::Col-->
-                                        <div class="col-md-6 fv-row">
-                                            <!--begin::Input group-->
+
+
+                                        <!-- <div class="col-md-6 fv-row">
                                             <div class="form-floating mb-7 fv-row">
                                                 <select name="hour_id" class="form-select form-select-solid"
                                                     data-control="select2" data-placeholder="Hour Select"
@@ -221,8 +221,9 @@
                                                 <label class="required " for="reservation_date">Reservation
                                                     Hour</label>
                                             </div>
-                                            <!--end::Input group-->
-                                        </div>
+                                        </div> -->
+
+
                                     </div>
                                 </div>
                                 <!--end::Col-->
@@ -231,168 +232,24 @@
 
 
 
-                            <!--begin::Input group-->
-                            <div class="row g-9">
-                                <!--begin::Col-->
-                                <div class="col-md-6 fv-row">
-                                    <div class="row g-9">
-                                        <!--begin::Col-->
-                                        <div class="col-md-6 fv-row">
-                                            <div class="form-floating mb-7 fv-row">
-                                                <select name="players" id="players"
-                                                    class="form-select form-select-solid" data-control="select2"
-                                                    data-placeholder="Player Select" data-allow-clear="true" required>
-                                                    <option></option>
-                                                    @for ($i = 2; $i <= 11; $i++)
-                                                        <option value="{{ $i }}"
-                                                            @selected($i == $reservation->players)> {{ $i }}</option>
-                                                    @endfor
-                                                </select>
-                                                <label class="required " for="players">Players</label>
-                                            </div>
-                                        </div>
-                                        <!--begin::Col-->
-                                        <div class="col-md-6 fv-row">
-                                            <!--begin::Input group-->
-                                            <div class="form-floating mb-7">
-                                                <div class="form-floating mb-7 fv-row">
-
-                                                </div>
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Col-->
-
-                                <!--begin::Col-->
-                                <div class="col-md-6 fv-row">
-                                    <div class="row g-9">
-                                        <!--begin::Col-->
-                                        <div class="col-md-6 fv-row">
-
-                                        </div>
-                                        <!--begin::Col-->
-                                        <div class="col-md-6 fv-row">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
+                           
 
 
-                            <!--begin::Input group-->
                             <div class="d-flex flex-column mb-8">
-                                <!--begin::Input group-->
                                 <div class="form-floating">
                                     <textarea name="comment" class="form-control form-control-solid kt_autosize min-h-100px" maxlength="500"
                                         data-kt-autosize="true" id="floatingContentDescription">{!! $reservation->comment !!}</textarea>
-                                    <label for="floatingContentDescription">Comment</label>
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            <!--end::Input group-->
-                            <div class="row g-9">
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-                                    <!--begin::Input group-->
-                                    <div class="form-floating mb-7">
-                                        <input type="text" class="form-control form-control-solid" id="promotion"
-                                            value="{{ $reservation->promotion_code }}" />
-                                        <label for="promotion"> Promotion </label>
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-                                    <!--begin::Input group-->
-                                    <div class="form-floating mb-7">
-                                        <input type="text" class="form-control form-control-solid" id="discount"
-                                            value="{{ $reservation->discount }}" />
-                                        <label for="discount">Discount</label>
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-                                    <!--begin::Input group-->
-                                    <div class="form-floating mb-7">
-                                        <input type="text" class="form-control form-control-solid" id="created_at"
-                                            value="{{ $reservation->payment_method ? 'Website' : 'Online' }}"
-                                            disabled />
-                                        <label for="created_at">Payment Method</label>
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-                                    <!--begin::Input group-->
-                                    <div class="form-floating mb-7">
-                                        <input type="text" class="form-control form-control-solid"
-                                            id="payment_info_id" value="{{ $reservation->payment_info_id }}" />
-                                        <label for="payment_info_id">Payment ID</label>
-                                    </div>
-                                    <!--end::Input group-->
+                                    <label for="floatingContentDescription">Yorum</label>
                                 </div>
                             </div>
-                            <div class="row g-9 mb-8">
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-                                    Method:
-                                    {{ $reservation->payment_method == 1 ? 'Upon Arrival' : 'Online Payment' }}
-                                </div>
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-                                    Per Price:
-                                    @isset($reservation->paymentInfo->amount)
-                                        {{ $reservation->paymentInfo->amount / 100 }}
-                                    @else
-                                        @php
-                                            $priceRecord = $reservation->price
-                                                ::where([
-                                                    'place_id' => $reservation->place_id,
-                                                    'room_id' => $reservation->room_id,
-                                                    'player' => $reservation->players,
-                                                ])
-                                                ->first();
-                                        @endphp
-
-                                        {{ $priceRecord ? $priceRecord->price . ' AED' : 'Price not available' }}
-                                    @endisset
-
-                                </div>
-                                <!--begin::Col-->
-                                <div class="col-md-3 fv-row">
-
-                                    @php
-                                        $priceRecord = $reservation->price
-                                            ::where([
-                                                'place_id' => $reservation->place_id,
-                                                'room_id' => $reservation->room_id,
-                                                'player' => $reservation->players,
-                                            ])
-                                            ->first();
-                                    @endphp
-
-                                    Total:
-                                    @if ($priceRecord)
-                                        {{ $reservation->players * $priceRecord->price }} AED
-                                    @else
-                                        Price not available
-                                    @endif
-
-
-
-                                </div>
+                           
                                 <!--begin::Col-->
                                 <div class="col-md-3 fv-row">
                                     <label
                                         class="form-check form-switch form-check-custom form-check-danger form-check-solid">
                                         <input name="status" class="form-check-input" type="checkbox"
                                             value="{{ $reservation->status }}" @checked($reservation->status) />
-                                        <span class="form-check-label status">Status</span>
+                                        <span class="form-check-label status">Durum</span>
                                     </label>
                                 </div>
 
