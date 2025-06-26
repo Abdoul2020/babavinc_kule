@@ -231,10 +231,6 @@
                             <!--end::Input group-->
 
 
-
-                           
-
-
                             <div class="d-flex flex-column mb-8">
                                 <div class="form-floating">
                                     <textarea name="comment" class="form-control form-control-solid kt_autosize min-h-100px" maxlength="500"

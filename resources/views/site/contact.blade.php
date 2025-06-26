@@ -32,142 +32,152 @@
 @section('content')
 
 
- <!-- Page Header Start -->
- <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ asset('assets/site/img/inside_page.jpg') }});">
-        <div class="container-fluid page-header-inner py-5">
-            <div class="container text-center">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">İletişim</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">İletişim</li>
-                    </ol>
-                </nav>
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ asset('assets/site/img/inside_page.jpg') }});">
+    <div class="container-fluid page-header-inner py-5">
+        <div class="container text-center">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">İletişim</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">İletişim</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class=" py-5">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-12 wow fadeIn mb-4" data-wow-delay="0.1s">
+                <iframe
+                    class="position-relative rounded w-100 h-100"
+                    src="https://www.google.com/maps?q=Antalya+Bulvarı+Kanal+Mah.+No:130/1+Kepez+Antalya&output=embed"
+                    frameborder="0"
+                    style="min-height: 350px; border:0;"
+                    allowfullscreen=""
+                    aria-hidden="false"
+                    tabindex="0">
+                </iframe>
+
+            </div>
+
+            <div class="text-center col-12 wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-5"> İletişim Bilgileri</h1>
+            </div>
+
+            <div class="col-12">
+                <div class="row gy-4">
+                    <div class="col-md-4">
+                        <div class="bg-light d-flex flex-column justify-content-center p-4">
+                            <h5 class="text-uppercase">// Adres //</h5>
+                            <p class="m-0" style="visibility: hidden;"><i class="fa fa-envelope-open text-primary me-2"></i>Antalya Bulvarı</p>
+
+                            <p class="m-0"><small class="fa fa-map-marker-alt text-primary me-2"></small>Antalya Bulvarı Kanal Mah. No:130/1 Kepez Antalya</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light d-flex flex-column justify-content-center p-4">
+                            <h5 class="text-uppercase">// Telefon //</h5>
+
+                            <p class="m-0"><small class="fa fa-phone-alt text-primary me-2"></small>
+                                Operasyon Tel : +90 (242) 332 02 00 // <br>
+                                <span class=""> <strong style="visibility: hidden;"> OperasyonTelpho:</strong> +90 (530) 200 52 20</span> 
+                            </p>
+                            <br>
+                            <p class="m-0"><small class="fa fa-phone-alt text-primary me-2"></small>
+                             Satın Alma Tel : +90 (242) 335 14 86 // <br> 
+                             <span class=""> <strong style="visibility: hidden;"> OperasyonTelpho:</strong> +90 (553) 391 65 65</span> 
+                             
+                            </p>
+                            <br>
+
+                            <p class="m-0"><small class="fa fa-phone-alt text-primary me-2"></small> 
+                            Muhasebe Tel : +90 (533) 502 36 17
+                        </p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light d-flex flex-column justify-content-center p-4">
+                            <h5 class="text-uppercase">// E-Posta //</h5>
+                            <p class="m-0 " style="visibility: hidden;"><i class="fa fa-envelope-open text-primary me-2"></i>
+                                info@babavinc.com
+                            </p>
+                            <p class="m-0"><i class="fa fa-envelope-open text-primary me-2"></i>
+                                info@babavinc.com
+                            </p>
+                            <p class="m-0" style="visibility: hidden;"><i class="fa fa-envelope-open text-primary me-2"></i>
+                                info@babavinc.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Contact End -->
 
-     <!-- Contact Start -->
-     <div class=" py-5" >
-        <div class="container">
-           
-            <div class="row g-4">
-
-                <div class="col-md-12 wow fadeIn mb-4" data-wow-delay="0.1s">
-                    <iframe
-  class="position-relative rounded w-100 h-100"
-  src="https://www.google.com/maps?q=Antalya+Bulvarı+Kanal+Mah.+No:130/1+Kepez+Antalya&output=embed"
-  frameborder="0"
-  style="min-height: 350px; border:0;"
-  allowfullscreen=""
-  aria-hidden="false"
-  tabindex="0">
-</iframe>
-
-                </div>
-
+<div class=" py-5 wow fadeInUp mt-5 " data-wow-delay="0.1s" style="background: #F3EED9; padding-bottom: 150px !important;">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-12 ">
                 <div class="text-center col-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <h1 class="mb-5"> İletişim Bilgileri</h1>
+                    <h1 class="mb-5"> İletişim Formu</h1>
                 </div>
-
-                <div class="col-12">
-                    <div class="row gy-4">
-                        <div class="col-md-4">
-                            <div class="bg-light d-flex flex-column justify-content-center p-4">
-                                <h5 class="text-uppercase">// Adres //</h5>
-                                <p class="m-0" style="visibility: hidden;"><i class="fa fa-envelope-open text-primary me-2"></i>Antalya Bulvarı</p>
-
-                                <p class="m-0"><small class="fa fa-map-marker-alt text-primary me-2"></small>Antalya Bulvarı Kanal Mah. No:130/1 Kepez Antalya</p>
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <label for="name"> Ad Soyad</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <label for="email"> E-Posta</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <label for="email"> Telefon</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <label for="subject">Konu Seçiniz</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                    <label for="message">Mesaj</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-primary w-100 py-3" type="submit"> Gönder</button>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="bg-light d-flex flex-column justify-content-center p-4">
-                                <h5 class="text-uppercase">// Telefon //</h5>
-
-                                <p class="m-0"><small class="fa fa-phone-alt text-primary me-2"></small>
-                                    Operasyon Tel : +90 (242) 332 02 00</p>
-                                <p class="m-0"><small class="fa fa-phone-alt text-primary me-2"></small> Satın Alma Tel : +90 (242) 331 43 66</p>
-
-                                <p class="m-0"><small class="fa fa-phone-alt text-primary me-2"></small> Muhasebe Tel : +90 (242) 335 14 86</p>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="bg-light d-flex flex-column justify-content-center p-4">
-                                <h5 class="text-uppercase">// E-Posta //</h5>
-                                <p class="m-0 " style="visibility: hidden;"><i class="fa fa-envelope-open text-primary me-2"></i>
-                                    info@babavinc.com
-                                </p>
-                                <p class="m-0"><i class="fa fa-envelope-open text-primary me-2"></i>
-                                    info@babavinc.com
-                                </p>
-                                <p class="m-0" style="visibility: hidden;"><i class="fa fa-envelope-open text-primary me-2"></i>
-                                    info@babavinc.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
-    <!-- Contact End -->
-
-    <div class=" py-5 wow fadeInUp mt-5 " data-wow-delay="0.1s" style="background: #F3EED9; padding-bottom: 150px !important;">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-12 ">
-                    <div class="text-center col-12 wow fadeInUp" data-wow-delay="0.1s">
-                        <h1 class="mb-5"> İletişim Formu</h1>
-                    </div>
-                    <div class="wow fadeInUp" data-wow-delay="0.2s">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name"> Ad Soyad</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email"> E-Posta</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email"> Telefon</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                        <label for="subject">Konu Seçiniz</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Mesaj</label>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <button class="btn btn-primary w-100 py-3" type="submit"> Gönder</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-                
-               
-            </div>
-        </div>
-    </div>
+</div>
 
 @endsection
 

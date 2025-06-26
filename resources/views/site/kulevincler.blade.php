@@ -32,22 +32,17 @@
 @section('styles')
 
 <style>
-    #yt-shell iframe {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-        pointer-events: none !important;
-        /* disables clicks */
-    }
+   
+  .container-fluid .carousel-item {
+  height: 60vh;
+  overflow: hidden;
+  position: relative;
+}
+#hero-video {
+  object-fit: cover;
+  height: 100%;
+}
 
-
-    [class^="ytp-"]{display:none!important;}
-    
-
-    /* ensure iframe section remains fixed height */
-    #heroVideo {
-        max-height: 50vh;
-    }
 </style>
 
 
@@ -59,38 +54,27 @@
 @section('content')
 
 <!-- Page Header Start -->
-<!-- <div class="container-fluid page-header mb-5 p-0" style="background-image: url( {{asset('assets/site/img/inside_page.jpg') }});">
-    <div class="container-fluid page-header-inner py-5">
-        <div class="container text-center">
-            <h1 class="display-3 text-white mb-3 animated slideInDown"> Kule Vinçler </h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center text-uppercase">
-                    <li class="breadcrumb-item"><a href="#">AnaSayfa</a></li>
-                    <li class="breadcrumb-item"><a href="#">Vinçler</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">Kule Vinçler</li>
-                </ol>
-            </nav>
+
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+        <div class="carousel-inner">
+
+            <!-- Slide 1: Video -->
+            <div class="carousel-item active position-relative">
+                <video id="hero-video" class="w-100 d-block" muted loop playsinline>
+                    <source src="{{ asset('assets/site/img/hero.mp4') }}" type="video/mp4">
+                </video>
+                <div id="video-progress" class="position-absolute bottom-0 start-0 bg-danger" style="height:4px; width:0;"></div>
+                <div class="carousel-caption d-flex align-items-center carousel-caption_video">
+                    <!-- your caption content -->
+                </div>
+            </div>
         </div>
     </div>
-</div> -->
+</div>
+<!-- Carousel End -->
 
-
-<section id="heroVideo" class="position-relative w-100" style="height:50vh; overflow:hidden;">
-    
-    <div id="yt-shell" class="position-absolute top-0 start-0 w-100 h-100"></div>
-    <div id="yt-progress" class="bg-danger position-absolute bottom-0 start-0" style="height:4px;width:0;"></div>
-
-    <!-- Overlay to block YouTube hover -->
-    <div id="yt-shield"
-        class="position-absolute top-0 start-0 w-100 h-100 z-2"
-        style="background:transparent;pointer-events:auto;cursor:default;">
-    </div>
-
-    <div id="yt-cover"
-        class="position-absolute top-0 start-0 w-100 h-100 bg-black"
-        style="opacity:1;transition:opacity .6s ease;">
-    </div>
-</section>
 
 
 
@@ -262,76 +246,35 @@
 @section('scripts')
 
 <script>
-/* CONFIG ---------------------------------------------------------------- */
-const VIDEO_ID = 'Gwsn3nIDJjM';
-let player;
+document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('hero-video');
+  const bar   = document.getElementById('video-progress');
+  const carousel = document.getElementById('header-carousel');
+  const bsCarousel = new bootstrap.Carousel(carousel, { interval: false });
 
-/* 1️⃣  inject IFrame API only once -------------------------------------- */
-function loadYT(){
-  return new Promise(res=>{
-    if(window.YT && YT.Player) return res();                        // already present
-    const s=document.createElement('script');
-    s.src='https://www.youtube.com/iframe_api';                     // Google‑hosted  ﻿:contentReference[oaicite:3]{index=3}
-    s.onload=()=>res();
-    document.head.appendChild(s);
+  video.play();
+
+  // Progress bar animation
+  video.addEventListener('timeupdate', () => {
+    const pct = (video.currentTime / video.duration) * 100;
+    bar.style.width = pct + '%';
   });
-}
 
-/* 2️⃣  build / rebuild player ------------------------------------------ */
-function makePlayer(){
-  if(player) try{player.destroy();}catch(e){}
-  player = new YT.Player('yt-shell',{
-    videoId: VIDEO_ID,
-    playerVars:{
-      autoplay:1, mute:1, loop:1, playlist:VIDEO_ID,              /* muted‑autoplay passes Chrome policy */ /* :contentReference[oaicite:4]{index=4} */
-      controls:0, modestbranding:1, rel:0, fs:0,
-      disablekb:1, playsinline:1                                  /* inline autoplay on iOS */          /* :contentReference[oaicite:5]{index=5} */
-    },
-    events:{
-      onReady: e=>{
-        e.target.playVideo();
-        unmaskWhenPlaying();                                      // start cover fade check
-        progLoop();                                               // start bar loop
-      },
-      onStateChange: e=>{
-        if([YT.PlayerState.PAUSED,YT.PlayerState.ENDED].includes(e.data)){
-          e.target.playVideo();                                   // auto‑resume            /* :contentReference[oaicite:6]{index=6} */
-        }
-      }
+  // When video ends, automatically slide to next
+  video.addEventListener('ended', () => {
+    bsCarousel.next();
+  });
+
+  // Play video again if reactivated
+  carousel.addEventListener('slide.bs.carousel', (e) => {
+    if (e.to === 0) {
+      video.currentTime = 0;
+      video.play();
     }
   });
-}
-
-/* 3️⃣  fade cover once video is confirmed playing ---------------------- */
-function unmaskWhenPlaying(){
-  const cover = document.getElementById('yt-cover');
-  const ready = () =>
-    player && player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING;
-
-  const int = setInterval(()=>{
-    if(ready()){                       // hide loading spinner & title bar
-      cover.style.opacity='0';         // smooth fade
-      setTimeout(()=>cover.remove(),600);
-      clearInterval(int);
-    }
-  },100);
-}
-
-/* 4️⃣  animate progress bar ------------------------------------------- */
-function progLoop(){
-  if(player && player.getDuration){
-    const pct = (player.getCurrentTime()/player.getDuration())*100;
-    document.getElementById('yt-progress').style.width = pct + '%';
-  }
-  requestAnimationFrame(progLoop);
-}
-
-/* 5️⃣  bootstrap ------------------------------------------------------- */
-loadYT().then(()=>{
-  if(!window.onYouTubeIframeAPIReady) window.onYouTubeIframeAPIReady = makePlayer;
-  if(window.YT && YT.Player) makePlayer();                         // API already loaded?
 });
 </script>
+
 
 
 

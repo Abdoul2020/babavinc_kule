@@ -31,6 +31,19 @@
 
 @section('styles')
 
+<style>
+   .container-fluid .carousel-item {
+        height: 60vh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #hero-video {
+        object-fit: cover;
+        height: 100%;
+    }
+</style>
+
 
 
 @endsection
@@ -39,30 +52,24 @@
 
 @section('content')
 
+
 <!-- Carousel Start -->
 <div class="container-fluid p-0 mb-5">
-    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="w-100" src="{{ asset('assets/site/img/hero_slide_1_1.jpg') }}" alt="Image">
-                <div class="carousel-caption d-flex align-items-center">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center justify-content-lg-start">
-                            <div class="col-10 col-lg-7 text-center text-lg-start">
-                                <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown"> Güvenli Kiralama, <br> <span>
-                                        Esnek Çözümler
-                                    </span> </h1>
-                                <h6 class="text-white text-uppercase mb-3 animated slideInDown"> Esnek kiralamalarımızla projelerinizi destekliyoruz. </h6>
 
-                                <a href="{{ route('home.products') }}" class="btn btn-primary py-3 px-5 animated slideInDown">KİRALAMA<i class="fa fa-arrow-right ms-3"></i></a>
-                            </div>
-                            <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
-                                <img class="img-fluid" src="{{ asset('assets/site/img/transparent_carousel.png') }}" alt="">
-                            </div>
-                        </div>
-                    </div>
+            <!-- Slide 1: Video -->
+            <div class="carousel-item active position-relative">
+                <video id="hero-video" class="w-100 d-block" muted loop playsinline>
+                    <source src="{{ asset('assets/site/img/hero.mp4') }}" type="video/mp4">
+                </video>
+                <div id="video-progress" class="position-absolute bottom-0 start-0 bg-danger" style="height:4px; width:0;"></div>
+                <div class="carousel-caption d-flex align-items-center carousel-caption_video">
+                    <!-- your caption content -->
                 </div>
             </div>
+
+            <!-- Slide 2: Image -->
             <div class="carousel-item">
                 <img class="w-100" src="{{ asset('assets/site/img/hero_slide2.jpg') }}" alt="Image">
                 <div class="carousel-caption d-flex align-items-center">
@@ -83,23 +90,23 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
 
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-            data-bs-slide="prev">
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-
     </div>
 </div>
 <!-- Carousel End -->
+
 
 
 
@@ -111,11 +118,14 @@
         <div class="row g-4">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="d-flex bg-light py-5 px-4">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
+                    <!-- <i class="fa fa-construction fa-3x text-primary"></i> -->
+                    <i class="fa fa-hard-hat fa-3x text-primary"></i>
+
                     <div class="ps-4">
                         <h5 class="mb-3"> Kule Vinç Hizmetleri</h5>
                         <p> Kaliteli Vinç Kiralamak.
-                            <span style="visibility: hidden;">hidden data Lorem ipsum dolor.</span> </p>
+                            <span style="visibility: hidden;">hidden data Lorem ipsum dolor.</span>
+                        </p>
                         <a
                             class="btn btn-outline-primary incele-btn"
                             href="{{ route('home.products') }}"> İncele</a>
@@ -124,7 +134,10 @@
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="d-flex bg-light py-5 px-4">
-                    <i class="fa fa-users-cog fa-3x text-primary flex-shrink-0"></i>
+                    <!-- <i class="fa fa-users-cog fa-3x text-primary flex-shrink-0"></i> -->
+                    <i class="fa fa-truck-pickup fa-3x text-primary" aria-hidden="true"></i>
+                    
+
                     <div class="ps-4">
                         <h5 class="mb-3"> Mobil Vinç Hizmetleri</h5>
                         <p> Projelerinizin ihtiyacına yönelik her türlü mobil vinç hizmeti</p>
@@ -136,11 +149,12 @@
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="d-flex bg-light py-5 px-4">
-                    <i class="fa fa-tools fa-3x text-primary flex-shrink-0"></i>
+                    <i class="fa-solid fa-gem fa-3x text-primary" aria-hidden="true"></i>
+
                     <div class="ps-4">
                         <h5 class="mb-3"> Kuyum Hizmetleri</h5>
-                        <p> Altın, Gümüş ve Mücevherat 
-                        <span style="visibility: hidden;">hidden data Lorem ipsum dolor.</span>
+                        <p> Altın, Gümüş ve Mücevherat
+                            <span style="visibility: hidden;">hidden data Lorem ipsum dolor.</span>
                         </p>
                         <a
                             class="btn btn-outline-primary incele-btn"
@@ -260,7 +274,7 @@
                         </div>
                     </div>
 
-                    
+
 
                     <div class="bg-white p-4">
                         <h5 class="fw-bold mb-0">Product Title 1</h5>
@@ -383,20 +397,20 @@
             <div class="col-lg-4">
                 <div class="nav w-100 nav-pills me-4">
                     <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                        <i class="fa fa-car-side fa-2x me-3"></i>
+                        <!-- <i class="fa fa-car-side fa-2x me-3"></i> -->
 
                         <h4 class="m-0">Türkiye</h4>
                     </button>
                     <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                        <i class="fa fa-car fa-2x me-3"></i>
+                        <!-- <i class="fa fa-car fa-2x me-3"></i> -->
                         <h4 class="m-0"> Turkmenistan </h4>
                     </button>
                     <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                        <i class="fa fa-cog fa-2x me-3"></i>
+                        <!-- <i class="fa fa-cog fa-2x me-3"></i> -->
                         <h4 class="m-0"> Almanya</h4>
                     </button>
                     <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                        <i class="fa fa-oil-can fa-2x me-3"></i>
+                        <!-- <i class="fa fa-oil-can fa-2x me-3"></i> -->
                         <h4 class="m-0"> Rusya</h4>
                     </button>
                 </div>
@@ -508,4 +522,39 @@
 @endsection
 
 @section('scripts')
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('hero-video');
+        const bar = document.getElementById('video-progress');
+        const carousel = document.getElementById('header-carousel');
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+            interval: false
+        });
+
+        video.play();
+
+        // Progress bar animation
+        video.addEventListener('timeupdate', () => {
+            const pct = (video.currentTime / video.duration) * 100;
+            bar.style.width = pct + '%';
+        });
+
+        // When video ends, automatically slide to next
+        video.addEventListener('ended', () => {
+            bsCarousel.next();
+        });
+
+        // Play video again if reactivated
+        carousel.addEventListener('slide.bs.carousel', (e) => {
+            if (e.to === 0) {
+                video.currentTime = 0;
+                video.play();
+            }
+        });
+    });
+</script>
+
+
+
 @endsection

@@ -178,6 +178,23 @@
     z-index: 1;
 }
 
+.carousel-caption_video{
+
+    background: none !important;
+
+}
+
+
+@media (min-width: 992px) and (max-width: 1150px) {
+    .navbar-expand-lg {
+      flex-wrap: wrap !important;
+      justify-content: flex-start !important;
+    }
+  }
+  
+
+
+
 .carousel-control-prev,
 .carousel-control-next {
     width: 10%;
