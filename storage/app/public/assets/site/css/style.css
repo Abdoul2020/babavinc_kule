@@ -184,7 +184,7 @@
 
 }
 
-@media (min-width: 992px) and (max-width: 1150px) {
+@media (min-width: 992px) and (max-width: 1430px) {
     .navbar-expand-lg {
       flex-wrap: wrap !important;
       justify-content: flex-start !important;

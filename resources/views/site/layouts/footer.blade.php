@@ -3,7 +3,7 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
-                <h4 class=" mb-4">Address</h4>
+                <h4 class=" mb-4">Adres</h4>
                 <p class="mb-2">
                     <i class="fa fa-map-marker-alt me-3"></i>
                     <a href="https://maps.google.com/?q=No:130/1,+Kepez,+Antalya" target="_blank" style="color:#596277">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h4 class=" mb-4">Kurumsl</h4>
+                <h4 class=" mb-4">Kurumsal</h4>
                 <a class="btn btn-link" href="{{ route('home.about') }}">Hakkımızda</a>
                 <a class="btn btn-link" href="{{ route('home.visionandmission') }}"> Vizyon & Misyon</a>
             </div>
@@ -66,11 +66,7 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-
-
-
                     © Copyright 2025 - Tüm Hakları Saklıdır. - Baba Vinç A.ş.
-
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">
