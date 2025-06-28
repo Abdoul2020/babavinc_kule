@@ -184,7 +184,6 @@
 
 }
 
-
 @media (min-width: 992px) and (max-width: 1150px) {
     .navbar-expand-lg {
       flex-wrap: wrap !important;
@@ -192,9 +191,6 @@
     }
   }
   
-
-
-
 .carousel-control-prev,
 .carousel-control-next {
     width: 10%;

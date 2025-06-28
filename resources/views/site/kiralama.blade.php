@@ -36,7 +36,7 @@
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url( {{ asset('assets/site/img/inside_page.jpg') }});">
     <div class="container-fluid page-header-inner py-5">
         <div class="container text-center">
-            <h1 class="display-3 text-white mb-3 animated slideInDown"> Kiralama</h1>
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Kule Vinç Kiralama</h1>
         </div>
     </div>
 </div>
@@ -45,10 +45,42 @@
 <!-- About Start -->
 <div class="container-xxl py-5 mt-5">
     <div class="container">
+
+
         <div class="row g-5">
             <div class="col-lg-12 pt-4" style="min-height: 400px;">
-                <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                    <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets/site/img/about_2.jpg') }}" style="object-fit: cover;" alt="">
+                <div id="aboutCarousel" class="carousel slide position-relative h-100 wow fadeIn" data-wow-delay="0.1s" data-bs-ride="carousel">
+
+                    {{-- Carousel Images --}}
+                    <div class="carousel-inner h-100">
+                        @php
+                        $images = [
+                        'assets/site/img/kule_kira_1.jpeg',
+                        'assets/site/img/kule_kira_2.jpeg',
+                        'assets/site/img/kule_kira_3.jpeg',
+                        'assets/site/img/kule_kira_4.jpeg',
+                        ];
+                        @endphp
+
+                        @foreach($images as $i => $img)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }} h-100">
+                            <img src="{{ asset($img) }}"
+                                class="position-absolute img-fluid w-100 h-100"
+                                style="object-fit: cover;"
+                                alt="Slide {{ $i + 1 }}">
+                        </div>
+                        @endforeach
+                    </div>
+
+                    {{-- Controls --}}
+                    @if(count($images) > 1)
+                    <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                    @endif
 
                 </div>
             </div>
@@ -57,9 +89,10 @@
         <div class="row g-5 mt-3">
             <div class="col-lg-12 mt-5">
 
-                <h1 class="mb-4"><span class="text-primary"></span> Kiralama Hizmeti</h1>
+                <h1 class="mb-4"><span class="text-primary"></span>Kule vinç Kiralama Hizmeti</h1>
                 <p class="mb-4">
-                    Firmamız 1980 yılında Antalya da BABA KURTARMA olarak faaliyete girmiştir. 1980 yılında kara düzen dediğimiz vinçlerle temelini attığımız işletmeyi geliştirerek sektör haline getirip Türkiye'nin tüm illerine ulaşmayı başardık. Müşteri hizmetlerinde daha yakın ilgilenelim diye İstanbul Hadımköy de şubemiz bulunmaktadır. 2001 yılından itibaren ağımızı genişleterek Rusya/Almanya/Türkmenistan/Özbekistan şubelerimizi açmış bulunmaktayız.
+
+                    Kule vinç, çoğunlukla inşaat alanlarında kullanılan, hareketli veya sabit bir taşıma konsolu üzerinde yüklerin hem yatay hem de dikey yönde taşınması için faydalanılan, çelik gövdeli çok güçlü bir ağırlık kaldırma makinesidir. Bir kuleyi andırmasından dolayı kule vinç olarak adlandırılmıştır.
 
                 </p>
 
@@ -69,7 +102,9 @@
                 <p><i class="fa fa-check text-success me-3"></i> Teslim ve Kurulum</p>
 
                 <p class="mb-4">
-                    Biz tüm şubelerimizde ağır nakliye ve vinç işletmeciliği yapıyoruz ve Dünya'nın her yerinde Türkiye'de verdiğimiz hizmetin aynısını vermekteyiz. Şirketimiz mobil vinç, kule vinç, hi-up vinç ağır nakliye ve forklift hizmetlerinde uzman ve deneyimli bir şirkettir. Şirketimiz inşaat sektörü, liman hizmetleri, baraj, çimento fabrikaları gibi birçok sektörde hizmet vermektedir. Şirketimiz 300 araç parkı ve 200 personeli ile 7/24 hizmet vermektedir.
+
+                    Çelik gövdenin yanı sıra, bom olarak adlandırılan ve ağırlık taşıyan, kol şeklinde bir aparatı bulunur. Bu bölümün dengelenmesi amacıyla da bom aparatının arka kısmında, ağırlık oluşturan beton denge taşları yer alır.
+
                 </p>
 
             </div>

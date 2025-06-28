@@ -42,9 +42,9 @@
                 <h4 class=" mb-4">Site Haritası</h4>
                 <a class="btn btn-link" href="/"> AnaSayfa</a>
                 <a class="btn btn-link" href="{{ route('home.about') }}"> Kurumsal</a>
-                <a class="btn btn-link" href="{{ route('home.products') }}"> Mobil Vinçler</a>
+                <a class="btn btn-link" href="{{ route('home.mobilvincpage') }}"> Mobil Vinçler</a>
                 <a class="btn btn-link" href="{{ route('home.products') }}"> Kule Vinçler</a>
-                <a class="btn btn-link" href="{{ route('home.products') }}"> Makine Parkur</a>
+                <a class="btn btn-link" href="{{ route('home.makineparkudetails', 'turkiye') }}"> Makine Parkur</a>
                 <a class="btn btn-link" href="{{ route('home.satis') }}"> Hizmetler</a>
                 <a class="btn btn-link" href="{{ route('home.contactpage') }}"> İletişim</a>
             </div>

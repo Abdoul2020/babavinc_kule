@@ -48,14 +48,46 @@
     <!-- About Start -->
     <div class="container-xxl py-5 mt-5">
         <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-12 pt-4" style="min-height: 400px;">
-                    <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset('assets/site/img/about_2.jpg') }}" style="object-fit: cover;" alt="">
-                        
+
+
+        <div class="row g-5">
+            <div class="col-lg-12 pt-4" style="min-height: 400px;">
+                <div id="aboutCarousel" class="carousel slide position-relative h-100 wow fadeIn" data-wow-delay="0.1s" data-bs-ride="carousel">
+
+                    {{-- Carousel Images --}}
+                    <div class="carousel-inner h-100">
+                        @php
+                        $images = [
+                        'assets/site/img/kule_kira_1.jpeg',
+                        'assets/site/img/kule_kira_2.jpeg',
+                        'assets/site/img/kule_kira_3.jpeg',
+                        'assets/site/img/kule_kira_4.jpeg',
+                        ];
+                        @endphp
+
+                        @foreach($images as $i => $img)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }} h-100">
+                            <img src="{{ asset($img) }}"
+                                class="position-absolute img-fluid w-100 h-100"
+                                style="object-fit: cover;"
+                                alt="Slide {{ $i + 1 }}">
+                        </div>
+                        @endforeach
                     </div>
+
+                    {{-- Controls --}}
+                    @if(count($images) > 1)
+                    <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                    @endif
+
                 </div>
             </div>
+        </div>
 
             <div class="row g-5 mt-3">
                 <div class="col-lg-12 mt-5">

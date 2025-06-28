@@ -32,7 +32,7 @@
 @section('styles')
 
 <style>
-   .container-fluid .carousel-item {
+    .container-fluid .carousel-item {
         height: 60vh;
         overflow: hidden;
         position: relative;
@@ -136,7 +136,7 @@
                 <div class="d-flex bg-light py-5 px-4">
                     <!-- <i class="fa fa-users-cog fa-3x text-primary flex-shrink-0"></i> -->
                     <i class="fa fa-truck-pickup fa-3x text-primary" aria-hidden="true"></i>
-                    
+
 
                     <div class="ps-4">
                         <h5 class="mb-3"> Mobil Vinç Hizmetleri</h5>
@@ -245,137 +245,57 @@
 
         <!-- end of carousell scroll -->
 
-
         <div class="row g-4">
+            @foreach($rooms as $room)
+            @php
+            $mediaItems = $attachments->get($room->id, collect());
+            $carouselImages = collect();
+
+            // Add room poster first
+            if (!empty($room->poster)) {
+            $carouselImages->push($room->poster);
+            }
+
+            // Add all linked photoVideo images
+            foreach ($mediaItems as $media) {
+            if (!empty($media->photos_img)) {
+            $carouselImages->push($media->photos_img);
+            }
+            }
+            @endphp
 
             <div class="col-lg-4 col-md-6">
                 <div class="card position-relative shadow-sm">
-
-
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-
+                    <div id="productCarousel{{ $room->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
+                            @foreach($carouselImages as $index => $image)
+                            <div class="carousel-item @if($index === 0) active @endif">
+                                <a href="{{ route('home.productsdetail', $room->slug) }}" class="stretched-link">
+                                    <img src="{{ asset($image) }}" class="d-block w-100" alt="{{ $room->title }} image {{ $index + 1 }}">
                                 </a>
                             </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
-                    </div>
 
-
-
-                    <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                </a>
-                            </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
-                        </div>
+                        @if($carouselImages->count() > 1)
+                        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel{{ $room->id }}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel{{ $room->id }}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                        @endif
                     </div>
 
                     <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
+                        <h5 class="fw-bold mb-0">{{ $room->title }}</h5>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                </a>
-                            </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                </a>
-                            </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
-                    </div>
-                </div>
-            </div>
-
-
+            @endforeach
         </div>
+
+
 
 
 
@@ -396,102 +316,98 @@
         <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
             <div class="col-lg-4">
                 <div class="nav w-100 nav-pills me-4">
-                    <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                        <!-- <i class="fa fa-car-side fa-2x me-3"></i> -->
-
-                        <h4 class="m-0">Türkiye</h4>
+                    @foreach($places as $id => $name)
+                    <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 @if($loop->first) active @endif"
+                        data-bs-toggle="pill" data-bs-target="#tab-pane-{{ $id }}" type="button">
+                        <h4 class="m-0 text-capitalize">{{ $name }}</h4>
                     </button>
-                    <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                        <!-- <i class="fa fa-car fa-2x me-3"></i> -->
-                        <h4 class="m-0"> Turkmenistan </h4>
-                    </button>
-                    <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                        <!-- <i class="fa fa-cog fa-2x me-3"></i> -->
-                        <h4 class="m-0"> Almanya</h4>
-                    </button>
-                    <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                        <!-- <i class="fa fa-oil-can fa-2x me-3"></i> -->
-                        <h4 class="m-0"> Rusya</h4>
-                    </button>
+                    @endforeach
                 </div>
             </div>
+
             <div class="col-lg-8">
                 <div class="tab-content w-100">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
+
+
+                    @foreach($places as $id => $name)
+                    <div class="tab-pane fade @if($loop->first) show active @endif" id="tab-pane-{{ $id }}">
                         <div class="row g-4">
+                            @php
+                            $rooms = $groupedRooms[$id] ?? collect();
+                            $firstRoom = $rooms->first();
+                            $allImages = collect();
+
+                            foreach ($rooms as $room) {
+                            $allImages->push($room->poster);
+                            }
+                            @endphp
+
+                            {{-- Carousel Column --}}
                             <div class="col-md-6" style="min-height: 350px;">
                                 <div class="position-relative h-100">
-                                    <img class="position-absolute img-fluid w-100 h-100" src="{{asset('assets/site/img/mobil_vinc.jpg') }}"
-                                        style="object-fit: cover;" alt="">
+                                    <div id="carouselPlace{{ $id }}" class="carousel slide h-100" data-bs-ride="carousel">
+                                        <div class="carousel-inner h-100">
+                                            @foreach($allImages as $index => $img)
+                                            <div class="carousel-item @if($index === 0) active @endif h-100">
+                                                <img src="{{ asset($img) }}?v={{ now()->format('His') }}"
+                                                    class="d-block w-100 h-100"
+                                                    style="object-fit: cover;"
+                                                    alt="{{ $firstRoom->title }} image {{ $index + 1 }}">
+                                            </div>
+                                            @endforeach
+                                        </div>
+
+                                        @if($allImages->count() > 1)
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPlace{{ $id }}" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon"></span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPlace{{ $id }}" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon"></span>
+                                        </button>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
+
+                            {{-- Description Column (only for the first room) --}}
                             <div class="col-md-6">
-                                <h3 class="mb-3"> Türkiye Araçlarımız</h3>
-                                <p class="mb-4">Araç parkımızda 15 tondan 1000 tona kadar her marka ve model mobil vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                <p><i class="fa fa-check text-success me-3"></i> Faun marka 50 tonluk mobil vinç</p>
-                                <p><i class="fa fa-check text-success me-3"></i>Liebherr marka 130 tonluk mobil vinç</p>
-                                <p><i class="fa fa-check text-success me-3"></i>Grove marka 200 tonluk mobil vinç</p>
-                                <a href="{{ route('home.makineparkudetails', 'turkiye') }}" class="btn btn-primary py-3 px-5 mt-3">İncele<i class="fa fa-arrow-right ms-3"></i></a>
+                                <h3 class="mb-3">{{ $firstRoom->title }}</h3>
+                                <div class="mb-4">
+                                    {!! Str::limit(strip_tags($firstRoom->description), 180) !!}
+                                </div>
+
+                                @php
+                                // Map display names to URL slugs
+                                $slugMap = [
+                                'Türkiye' => 'turkiye',
+                                'Türkmenistan' => 'turkmenistan',
+                                'Almanya' => 'germany',
+                                'Rusya' => 'russia',
+                                ];
+
+                                // $name is the display name, e.g. 'Türkiye'
+                                $slug = $slugMap[$name] ?? Str::slug($name);
+                                @endphp
+
+                                <a href="{{ route('home.makineparkudetails', $slug) }}" class="btn btn-primary py-3 px-5 mt-3">
+                                    İncele <i class="fa fa-arrow-right ms-3"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab-pane-2">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute img-fluid w-100 h-100" src="{{asset('assets/site/img/kule_vinc.jpg') }}"
-                                        style="object-fit: cover;" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-3"> Türkmenistan Araçlarımız</h3>
-                                <p class="mb-4">Araç parkımızda 6 tondan 16 tona kadar her marka ve model kule vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                <p><i class="fa fa-check text-success me-3"></i>s-65 tipi 8 tonluk kule vinç</p>
-                                <p><i class="fa fa-check text-success me-3"></i>s-60 tipi 6 tonluk kule vinç</p>
-                                <p><i class="fa fa-check text-success me-3"></i>TL-55 tipi 5 tonluk kule vinç</p>
-                                <a href="{{ route('home.makineparkudetails', 'turkmenistan') }}" class="btn btn-primary py-3 px-5 mt-3"> İncele<i class="fa fa-arrow-right ms-3"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab-pane-3">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets/site/img/hipup_vinc.jpg') }}"
-                                        style="object-fit: cover;" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-3">Hi-Almanya Araçlarımız</h3>
-                                <p class="mb-4">Araç parkımızda 10 tondan 120 tona kadar her marka ve model Hi-up vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                <p><i class="fa fa-check text-success me-3"></i>30 tonluk Hi-up Vinçler</p>
-                                <p><i class="fa fa-check text-success me-3"></i>20 tonluk</p>
-                                <p><i class="fa fa-check text-success me-3"></i>5 adet Sepet</p>
-                                <a href="{{ route('home.makineparkudetails', 'germany') }}" class="btn btn-primary py-3 px-5 mt-3">İncele<i class="fa fa-arrow-right ms-3"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab-pane-4">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute img-fluid w-100 h-100" src=" {{ asset('assets/site/img/forklift.jpg') }}"
-                                        style="object-fit: cover;" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-3"> Rusya Araçlarımız</h3>
-                                <p class="mb-4">Araç parkımızda 2 tondan 15 tona kadar her marka ve model forklifterimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                <p><i class="fa fa-check text-success me-3"></i>Hyster Marka 12 Tonluk Forklift</p>
-                                <p><i class="fa fa-check text-success me-3"></i>Hyster Marka 10 Tonluk Forklift</p>
-                                <p><i class="fa fa-check text-success me-3"></i> Hyster Marka 9 Tonluk Forklift</p>
-                                <a href="{{ route('home.makineparkudetails', 'russia') }}" class="btn btn-primary py-3 px-5 mt-3"> İncele<i class="fa fa-arrow-right ms-3"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
+
+
+
                 </div>
             </div>
+
+
         </div>
+
+
+
     </div>
 </div>
 <!-- Service End -->

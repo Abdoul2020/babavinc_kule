@@ -40,7 +40,7 @@
                 <ol class="breadcrumb justify-content-center text-uppercase">
                     <li class="breadcrumb-item"><a href="#">AnaSayfa</a></li>
                     <li class="breadcrumb-item"><a href="#">KULE VİNÇLER</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page"> {{ $products->title }} </li>
+                    <li class="breadcrumb-item text-white active" aria-current="page"> {{ $rooms->title }} </li>
                 </ol>
             </nav>
         </div>
@@ -71,48 +71,60 @@
 
                                     <div class="col-lg-12">
                                         <div class="tab-content w-100">
+
+
                                             <div class="tab-pane fade show active" id="tab-pane-1">
+
+
+
+                                                @php
+                                                // Collect images: poster first, then attachments for this room
+                                                $imageList = collect([$rooms->poster]);
+                                                $attachments->get($rooms->id, collect())
+                                                ->pluck('photos_img')
+                                                ->each(fn($img) => $imageList->push($img));
+                                                @endphp
+
                                                 <div class="row g-4">
-
+                                                    {{-- Carousel Column --}}
                                                     <div class="col-md-6" style="min-height: 350px;">
-
-
-                                                        <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-
-                                                            <div class="carousel-inner">
-                                                                <div class="carousel-item active">
-                                                                    <a href="details-page.html" class="stretched-link">
-                                                                        <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                                                    </a>
+                                                        <div class="position-relative h-100">
+                                                            <div id="productCarousel{{ $rooms->id }}" class="carousel slide h-100" data-bs-ride="carousel">
+                                                                <div class="carousel-inner h-100">
+                                                                    @foreach($imageList as $index => $img)
+                                                                    <div class="carousel-item @if($index === 0) active @endif h-100">
+                                                                        <img src="{{ asset($img) }}?v={{ now()->format('His') }}"
+                                                                            class="d-block w-100 h-100"
+                                                                            style="object-fit: cover;"
+                                                                            alt="{{ $rooms->title }} image {{ $index + 1 }}">
+                                                                    </div>
+                                                                    @endforeach
                                                                 </div>
 
-                                                                <div class="carousel-item">
-                                                                    <a href="details-page.html" class="stretched-link">
-                                                                        <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="carousel-item">
-                                                                    <a href="details-page.html" class="stretched-link">
-                                                                        <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                                                    </a>
-                                                                </div>
-
-
+                                                                @if($imageList->count() > 1)
+                                                                <button class="carousel-control-prev" type="button"
+                                                                    data-bs-target="#productCarousel{{ $rooms->id }}" data-bs-slide="prev">
+                                                                    <span class="carousel-control-prev-icon"></span>
+                                                                </button>
+                                                                <button class="carousel-control-next" type="button"
+                                                                    data-bs-target="#productCarousel{{ $rooms->id }}" data-bs-slide="next">
+                                                                    <span class="carousel-control-next-icon"></span>
+                                                                </button>
+                                                                @endif
                                                             </div>
                                                         </div>
-
-
-
                                                     </div>
+
+                                                    {{-- Description Column --}}
                                                     <div class="col-md-6">
-                                                        <h3 class="mb-3"> GT Mobil Vinc Makine Detayı</h3>
-                                                        <p class="mb-4">Araç parkımızda 15 tondan 1000 tona kadar her marka ve model mobil vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i> Faun marka 50 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Liebherr marka 130 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Grove marka 200 tonluk mobil vinç</p>
+                                                        <h3 class="mb-3">{{ $rooms->title }}</h3>
+                                                        <div class="mb-4">{!! Str::limit(strip_tags($rooms->description), 300) !!}</div>
+                                                        {{-- If you have detail route --}}
+                                                        <a href="{{ route('home.productsdetail', $rooms->slug) }}" class="btn btn-primary py-3 px-5 mt-3">
+                                                            İncele <i class="fa fa-arrow-right ms-3"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
-
 
                                                 <!-- baglı urunlaer -->
 
@@ -123,32 +135,35 @@
                                                             <h6 class="text-primary text-uppercase"> Hoşunuza Gidebilecek Makineler </h6>
                                                             <h1 class="mb-5"> Diğer Makineler </h1>
                                                         </div>
+
+
                                                         <div class="owl-carousel testimonial-carousel position-relative">
+                                                            @foreach ($allProducts as $product)
+                                                            @php
+                                                            // Collect room poster and its attachments
+                                                            $imgs = collect([$product->poster]);
+                                                            $allAttachments->get($product->id, collect())
+                                                            ->pluck('photos_img')
+                                                            ->each(fn($img) => $imgs->push($img));
+                                                            @endphp
+
+                                                            @foreach ($imgs as $img)
                                                             <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
+
+                                                                <a href="{{ route('home.productsdetail', $product->slug) }}">
+                                                                    <img class="bg-light p-2 mx-auto mb-3" src="{{ asset($img) }}" alt="{{ $product->title }}">
+                                                                </a>
+
                                                                 <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
+                                                                    <p class="mb-0">{{ $product->title }}</p>
                                                                 </div>
                                                             </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light text-center p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
+                                                            @endforeach
+                                                            @endforeach
                                                         </div>
+
+
+
                                                     </div>
                                                 </div>
                                                 <!-- Testimonial End -->
@@ -161,259 +176,6 @@
                                 </div>
                             </div>
                             <!-- Service End -->
-
-                        </div>
-
-                        <div id="turkmenistan" class="container tab-pane fade">
-
-
-                            <div class="container">
-
-                                <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-
-                                    <div class="col-lg-12">
-                                        <div class="tab-content w-100">
-                                            <div class="tab-pane fade show active" id="tab-pane-1">
-                                                <div class="row g-4">
-                                                    <div class="col-md-6" style="min-height: 350px;">
-                                                        <div class="position-relative h-100">
-                                                            <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets/site/img/product2.jpg') }}"
-                                                                style="object-fit: cover;" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h3 class="mb-3"> Türkmenistan'da Mobil Vinçler</h3>
-                                                        <p class="mb-4">Araç parkımızda 15 tondan 1000 tona kadar her marka ve model mobil vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i> Faun marka 50 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Liebherr marka 130 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Grove marka 200 tonluk mobil vinç</p>
-                                                    </div>
-                                                </div>
-
-
-                                                <!-- baglı urunlaer -->
-
-                                                <!-- Testimonial Start -->
-                                                <div class=" py-5 wow fadeInUp" data-wow-delay="0.1s">
-                                                    <div class="container">
-                                                        <div class="">
-                                                            <h6 class="text-primary text-uppercase"> Kule </h6>
-                                                            <h1 class="mb-5"> Mevcut kuleler</h1>
-                                                        </div>
-                                                        <div class="owl-carousel testimonial-carousel position-relative">
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light text-center p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Testimonial End -->
-
-
-                                                <!-- baglı urunler -->
-
-
-
-                                                <!-- Urun features -->
-
-
-
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div id="almanya" class="container tab-pane fade">
-
-
-                            <div class="container">
-
-
-
-                                <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-
-                                    <div class="col-lg-12">
-                                        <div class="tab-content w-100">
-                                            <div class="tab-pane fade show active" id="tab-pane-1">
-                                                <div class="row g-4">
-                                                    <div class="col-md-6" style="min-height: 350px;">
-                                                        <div class="position-relative h-100">
-                                                            <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets/site/img/product2.jpg') }}"
-                                                                style="object-fit: cover;" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h3 class="mb-3">Almanya'da Mobil Vinç</h3>
-                                                        <p class="mb-4">Araç parkımızda 15 tondan 1000 tona kadar her marka ve model mobil vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i> Faun marka 50 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Liebherr marka 130 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Grove marka 200 tonluk mobil vinç</p>
-                                                    </div>
-                                                </div>
-
-
-                                                <!-- baglı urunlaer -->
-
-                                                <!-- Testimonial Start -->
-                                                <div class=" py-5 wow fadeInUp" data-wow-delay="0.1s">
-                                                    <div class="container">
-                                                        <div class="">
-                                                            <h6 class="text-primary text-uppercase"> Kule </h6>
-                                                            <h1 class="mb-5"> Mevcut kuleler</h1>
-                                                        </div>
-                                                        <div class="owl-carousel testimonial-carousel position-relative">
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light text-center p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Testimonial End -->
-
-
-                                                <!-- baglı urunler -->
-
-
-
-                                                <!-- Urun features -->
-
-
-
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                        <div id="rusya" class="container tab-pane fade">
-
-
-                            <div class="container">
-
-
-
-                                <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-
-                                    <div class="col-lg-12">
-                                        <div class="tab-content w-100">
-                                            <div class="tab-pane fade show active" id="tab-pane-1">
-                                                <div class="row g-4">
-                                                    <div class="col-md-6" style="min-height: 350px;">
-                                                        <div class="position-relative h-100">
-                                                            <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets/site/img/product2.jpg') }}"
-                                                                style="object-fit: cover;" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h3 class="mb-3">Rusya'da Mobil Vinçler</h3>
-                                                        <p class="mb-4">Araç parkımızda 15 tondan 1000 tona kadar her marka ve model mobil vinçlerimiz sizlere en uygun ve en kaliteli hizmeti vermek için hazır beklemektedir.</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i> Faun marka 50 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Liebherr marka 130 tonluk mobil vinç</p>
-                                                        <p><i class="fa fa-check text-success me-3"></i>Grove marka 200 tonluk mobil vinç</p>
-                                                    </div>
-                                                </div>
-
-
-                                                <!-- baglı urunlaer -->
-
-                                                <!-- Testimonial Start -->
-                                                <div class=" py-5 wow fadeInUp" data-wow-delay="0.1s">
-                                                    <div class="container">
-                                                        <div class="">
-                                                            <h6 class="text-primary text-uppercase"> Kule </h6>
-                                                            <h1 class="mb-5"> Mevcut kuleler</h1>
-                                                        </div>
-                                                        <div class="owl-carousel testimonial-carousel position-relative">
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light text-center p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product1.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="testimonial-item text-center">
-                                                                <img class="bg-light  p-2 mx-auto mb-3" src="{{ asset('assets/site/img/product2.jpg') }}">
-                                                                <div class="testimonial-text bg-light p-2">
-                                                                    <p class="mb-0"> GT Kule Vinç </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Testimonial End -->
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
                         </div>
 
@@ -441,45 +203,64 @@
         <div class="row g-4 mt-3"> <!-- Adds vertical and horizontal gutter spacing -->
             <div class="col-lg-4 col-md-6">
                 <div class="service-item text-center bg-light p-4 h-100 rounded">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
-                    <h3> Hızlı kurulum ve söküm imkanının olması</h3>
-                    <p> Açıklama </p>
+                    <i class="fa-solid fa-rocket fa-3x text-primary flex-shrink-0"></i>
+                    <h3>Hızlı kurulum ve söküm imkânı</h3>
+                    <p>Vinç sistemlerimiz, kolay kurulumu ve hızlı sökümü sayesinde sahada zaman ve iş gücünden tasarruf sağlar hiç vakit kaybetmeden çalışmaya başlayın!</p>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="service-item text-center bg-light p-4 h-100 rounded">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
-                    <h3> Kurulum esnasında en üst seviye güvenlik önlemlerinin alınması</h3>
-                    <p> Açıklama</p>
+                    <i class="fa fa-shield fa-3x text-primary flex-shrink-0" aria-hidden="true"></i>
+                    <h3>Kurulum esnasında en üst seviye güvenlik önlemleri</h3>
+                    <p>
+                        Kurulum ve söküm süreçlerimizde, operatörlerimiz ve çevre güvenliği için CIP‑sertifikalı ekipmanlar kullanılır.
+                        Tüm işlemler, OSHA ve yerel iş güvenliği standartlarına uygun şekilde gerçekleştirilir.
+                    </p>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="service-item text-center bg-light p-4 h-100 rounded">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
-                    <h3>
-                        En ağır şartlara ve En zorlu iklim koşullarına dayanacak şekilde tasarlanması</h3>
-                    <p> Açıklama</p>
+                    <i class="fa fa-shield fa-3x text-primary flex-shrink-0" aria-hidden="true"></i>
+                    <h3>En ağır şartlara ve en zorlu iklim koşullarına dayanacak şekilde tasarlanması</h3>
+                    <p>
+                        Ekipmanlarımız, zorlu coğrafi ve meteorolojik koşullara uygun olarak özel alaşımlarla üretilir.
+                        Şiddetli rüzgar, aşırı sıcaklık veya aşırı soğuk gibi dış etkenlere karşı dayanıklıdır ve uzun ömürlü kullanım sunar.
+                    </p>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="service-item text-center bg-light p-4 h-100 rounded">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
-                    <h3> Yurtiçi ve Uluslararası sertifikalara sahiptir (ISO,CE,GOST-R, TUVNORD,EAC)</h3>
-                    <p>Açıklama</p>
+                    <i class="fa-solid fa-certificate fa-3x text-primary flex-shrink-0" aria-hidden="true"></i>
+                    <h3>Yurtiçi ve Uluslararası sertifikalara sahiptir (ISO, CE, GOST-R, TÜV NORD, EAC)</h3>
+                    <p>
+                        Ekipmanlarımız, ISO, CE, GOST-R, TÜV NORD ve EAC gibi ulusal ve uluslararası standartlar doğrultusunda test edilmiş, belgelenmiş ve sertifikalandırılmıştır.
+                        Bu sertifikalar, kalite, güvenlik ve performans açısından en üst düzeyde olduğumuzu garantiler.
+                    </p>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="service-item text-center bg-light p-4 h-100 rounded">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
-                    <h3> Ekipman kullanımında en iyi kalite tercih edilmiştir</h3>
-                    <p>Açıklama</p>
+                    <i class="fa-solid fa-gem fa-3x text-primary flex-shrink-0" aria-hidden="true"></i>
+                    <h3>Ekipman kullanımında en iyi kalite tercih edilmiştir</h3>
+                    <p>
+                        Tüm projelerimizde yüksek kaliteli, sektör lideri markaların ekipmanları kullanılır.
+                        Dayanıklılık, performans ve uzun ömür önceliğimizdir çünkü işinizi en iyi şekilde desteklemeyi hedefliyoruz.
+                    </p>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="service-item text-center bg-light p-4 h-100 rounded">
-                    <i class="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
+                    <i class="fa fa-truck fa-3x text-primary flex-shrink-0" aria-hidden="true"></i>
                     <h3>Daha az tır ve konteyner ile taşınabilirlik</h3>
-                    <p> Açıklama</p>
+                    <p>
+                        Yeni tasarımımız sayesinde ekipmanlarımız daha kompakt hale getirildi; bu da nakliye sırasında daha az tır ve konteyner ihtiyacı demek. Böylece hem lojistik maliyetleriniz azalır hem de çevresel etki düşer.
+                    </p>
+
                 </div>
             </div>
         </div>

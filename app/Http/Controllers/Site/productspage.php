@@ -16,8 +16,16 @@ class productspage extends Controller
     {
         // $products = Room::all();
 
+        // $products = Room::all();
+        $products = Room::where('slug', 'like', '%kule-vinc%')->get();
 
-        return view('site.kulevincler');
+        $attachments = PhotoVideo::all()->groupBy('room_id');
+
+
+        return view('site.kulevincler', [
+            'rooms' => $products,
+            'attachments' => $attachments,
+        ]);
     }
 
     /**
@@ -40,24 +48,36 @@ class productspage extends Controller
      * Display the specified resource.
      */
 
-     public function productdetail($slug)
+    public function productdetail($slug)
     {
-
-        $products = Room::with(['price', 'faqs', 'hour.reservations'])
-            ->withoutTrashed()
+        $products = Room::withoutTrashed()
             ->where('slug', $slug)
-            ->where('place_id', 1) // Filtering for place_id = 1
+            ->firstOrFail();
+
+        // group rooms
+        $groupedRooms = Room::where('status', 1)
             ->orderBy('order')
-            ->firstOrFail([
-                'id', 'slug', 'place_id', 'title', 'description', 'poster', 'banner', 'text_picture',
-                'level', 'duration', 'person', 'seo_title', 'seo_description', 'seo_keywords'
-            ]);
-            $photovideo = PhotoVideo::where('room_id', $products->id)->get();
+            ->get()
+            ->groupBy('place_id');
+
+        $attachments = PhotoVideo::all()->groupBy('room_id');
+
+        // bring all products exept the slug
+        $allProducts = Room::withoutTrashed()
+            ->where('slug', '!=', $slug)
+            ->get();
+
+        $allattachments = PhotoVideo::whereIn('room_id', $allProducts->pluck('id'))->get()->groupBy('room_id');
+
+
+
 
         return view('site.products.details', [
-            'id' => $products->id,
-            'products' => $products,
-            'photos' => $photovideo
+            'rooms' => $products,
+            'attachments' => $attachments,
+            'groupedRooms' => $groupedRooms,
+            'allProducts' => $allProducts,
+            'allAttachments' => $allattachments
         ]);
     }
 

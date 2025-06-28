@@ -32,17 +32,16 @@
 @section('styles')
 
 <style>
-   
-  .container-fluid .carousel-item {
-  height: 60vh;
-  overflow: hidden;
-  position: relative;
-}
-#hero-video {
-  object-fit: cover;
-  height: 100%;
-}
+    .container-fluid .carousel-item {
+        height: 60vh;
+        overflow: hidden;
+        position: relative;
+    }
 
+    #hero-video {
+        object-fit: cover;
+        height: 100%;
+    }
 </style>
 
 
@@ -95,123 +94,56 @@
 
 
         <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                </a>
-                            </div>
+            @foreach($rooms as $room)
+            @php
+            $mediaItems = $attachments->get($room->id, collect());
+            $carouselImages = collect();
 
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            // Add room poster first
+            if (!empty($room->poster)) {
+            $carouselImages->push($room->poster);
+            }
 
-                    <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
-                    </div>
-                </div>
-            </div>
+            // Add all linked photoVideo images
+            foreach ($mediaItems as $media) {
+            if (!empty($media->photos_img)) {
+            $carouselImages->push($media->photos_img);
+            }
+            }
+            @endphp
 
             <div class="col-lg-4 col-md-6">
                 <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+                    <div id="productCarousel{{ $room->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
+                            @foreach($carouselImages as $index => $image)
+                            <div class="carousel-item @if($index === 0) active @endif">
+                                <a href="{{ route('home.productsdetail', $room->slug) }}" class="stretched-link">
+                                    <img src="{{ asset($image) }}" class="d-block w-100" alt="{{ $room->title }} image {{ $index + 1 }}">
                                 </a>
                             </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
+
+                        @if($carouselImages->count() > 1)
+                        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel{{ $room->id }}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel{{ $room->id }}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                        @endif
                     </div>
 
                     <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
+                        <h5 class="fw-bold mb-0">{{ $room->title }}</h5>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                </a>
-                            </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card position-relative shadow-sm">
-                    <div id="productCarousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 1">
-                                </a>
-                            </div>
-
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{asset('assets/site/img/product1.jpg') }}" class="d-block w-100" alt="Product 1 – slide 2">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ route('home.productsdetail', 'gt-mobile-vinc') }}" class="stretched-link">
-                                    <img src="{{ asset('assets/site/img/product2.jpg') }}" class="d-block w-100" alt="Product 1 – slide 3">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-4">
-                        <h5 class="fw-bold mb-0">Product Title 1</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+
+
     </div>
 </div>
 <!-- Team End -->
@@ -246,33 +178,35 @@
 @section('scripts')
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const video = document.getElementById('hero-video');
-  const bar   = document.getElementById('video-progress');
-  const carousel = document.getElementById('header-carousel');
-  const bsCarousel = new bootstrap.Carousel(carousel, { interval: false });
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('hero-video');
+        const bar = document.getElementById('video-progress');
+        const carousel = document.getElementById('header-carousel');
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+            interval: false
+        });
 
-  video.play();
+        video.play();
 
-  // Progress bar animation
-  video.addEventListener('timeupdate', () => {
-    const pct = (video.currentTime / video.duration) * 100;
-    bar.style.width = pct + '%';
-  });
+        // Progress bar animation
+        video.addEventListener('timeupdate', () => {
+            const pct = (video.currentTime / video.duration) * 100;
+            bar.style.width = pct + '%';
+        });
 
-  // When video ends, automatically slide to next
-  video.addEventListener('ended', () => {
-    bsCarousel.next();
-  });
+        // When video ends, automatically slide to next
+        video.addEventListener('ended', () => {
+            bsCarousel.next();
+        });
 
-  // Play video again if reactivated
-  carousel.addEventListener('slide.bs.carousel', (e) => {
-    if (e.to === 0) {
-      video.currentTime = 0;
-      video.play();
-    }
-  });
-});
+        // Play video again if reactivated
+        carousel.addEventListener('slide.bs.carousel', (e) => {
+            if (e.to === 0) {
+                video.currentTime = 0;
+                video.play();
+            }
+        });
+    });
 </script>
 
 
