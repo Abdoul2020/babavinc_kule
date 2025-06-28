@@ -271,7 +271,7 @@
                             @foreach($carouselImages as $index => $image)
                             <div class="carousel-item @if($index === 0) active @endif">
                                 <a href="{{ route('home.productsdetail', $room->slug) }}" class="stretched-link">
-                                    <img src="{{ asset($image) }}" class="d-block w-100" alt="{{ $room->title }} image {{ $index + 1 }}">
+                                    <img src="{{ asset($image) }}?v=' . date('H:i:s')" class="d-block w-100" alt="{{ $room->title }} image {{ $index + 1 }}">
                                 </a>
                             </div>
                             @endforeach
